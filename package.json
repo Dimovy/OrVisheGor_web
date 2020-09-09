@@ -2,7 +2,7 @@
   "name": "orvishegor_fixcode",
   "version": "1.0.0",
   "description": "",
-  "homepage": "https://github.com/Dimovy/OrVisheGor_web",
+  "homepage": "https://dimovy.github.io/OrVisheGor_web",
   "main": "index.js",
   "scripts": {
     "start": "cross-env PORT=10888 HTTPS=true react-scripts start",
