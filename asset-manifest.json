@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/OrVisheGor_web/static/css/main.b37a7733.chunk.css",
-    "main.js": "/OrVisheGor_web/static/js/main.e75b9d97.chunk.js",
-    "main.js.map": "/OrVisheGor_web/static/js/main.e75b9d97.chunk.js.map",
+    "main.css": "/OrVisheGor_web/static/css/main.a1107254.chunk.css",
+    "main.js": "/OrVisheGor_web/static/js/main.c93c425d.chunk.js",
+    "main.js.map": "/OrVisheGor_web/static/js/main.c93c425d.chunk.js.map",
     "runtime-main.js": "/OrVisheGor_web/static/js/runtime-main.d24f47bd.js",
     "runtime-main.js.map": "/OrVisheGor_web/static/js/runtime-main.d24f47bd.js.map",
     "static/js/2.34ba907e.chunk.js": "/OrVisheGor_web/static/js/2.34ba907e.chunk.js",
     "static/js/2.34ba907e.chunk.js.map": "/OrVisheGor_web/static/js/2.34ba907e.chunk.js.map",
     "index.html": "/OrVisheGor_web/index.html",
-    "precache-manifest.516becb82c888bf64f16332a6acb4bee.js": "/OrVisheGor_web/precache-manifest.516becb82c888bf64f16332a6acb4bee.js",
+    "precache-manifest.600df5c203b35b8fcbcbc09ef08c6b97.js": "/OrVisheGor_web/precache-manifest.600df5c203b35b8fcbcbc09ef08c6b97.js",
     "service-worker.js": "/OrVisheGor_web/service-worker.js",
-    "static/css/main.b37a7733.chunk.css.map": "/OrVisheGor_web/static/css/main.b37a7733.chunk.css.map",
+    "static/css/main.a1107254.chunk.css.map": "/OrVisheGor_web/static/css/main.a1107254.chunk.css.map",
     "static/js/2.34ba907e.chunk.js.LICENSE.txt": "/OrVisheGor_web/static/js/2.34ba907e.chunk.js.LICENSE.txt",
     "static/media/1.png": "/OrVisheGor_web/static/media/1.dfc54362.png",
     "static/media/2.png": "/OrVisheGor_web/static/media/2.20489759.png",
@@ -27,7 +27,7 @@
   "entrypoints": [
     "static/js/runtime-main.d24f47bd.js",
     "static/js/2.34ba907e.chunk.js",
-    "static/css/main.b37a7733.chunk.css",
-    "static/js/main.e75b9d97.chunk.js"
+    "static/css/main.a1107254.chunk.css",
+    "static/js/main.c93c425d.chunk.js"
   ]
 }
