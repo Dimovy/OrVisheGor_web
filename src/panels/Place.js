@@ -13,18 +13,18 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
 
     const result = Object.values(order)
       .filter((value) => {
-        const { item: { id }} = value;
+        const { item: { id } } = value;
 
         return foodIds.has(id);
       })
       .reduce((result, value) => {
-        const { count, item: { price }} = value;
+        const { count, item: { price } } = value;
 
         return result + parseInt(price) * parseInt(count);
       }, 0);
 
     return accounting.formatNumber(result, 0, ' ');
-  }, [ order, item ]);
+  }, [order, item]);
 
   return (
     <div className="Place">
@@ -36,10 +36,10 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
             </Link>
           </h1>
           <Link to="/edit" className="Place__change-tz">
-          <img
-            alt="change-profile"
-            src={edit}
-          />
+            <img
+              alt="change-profile"
+              src={edit}
+            />
           </Link>
         </aside>
       </header>
@@ -100,19 +100,19 @@ const Place = ({ item, order, onIncrementPosition, onDecrementPosition, area }) 
           </li>
         )))}
       </ul>
-      <footer className="Place__footer">
+      {price === '0' ? null : <footer className="Place__footer">
         <Link to={`/basket/${area.id}/${item.id}`} className="Place__order">
           Оформить заказ ({price})
         </Link>
-      </footer>
+      </footer>}
     </div>
   );
 };
 
 Place.defaultProps = {
   item: {},
-  onIncrementPosition: () => {},
-  onDecrementPosition: () => {},
+  onIncrementPosition: () => { },
+  onDecrementPosition: () => { },
 };
 
 export default Place;

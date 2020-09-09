@@ -33,7 +33,7 @@ const FOOD_AREAS = [{
 			name: 'Классик',
 			price: 150,
 		}, {
-			id: 'bigmac',
+			id: 'fries',
 			image: OneTowar,
 			name: 'Картофель фри',
 			price: 50,
@@ -125,8 +125,9 @@ const foodsMap = FOOD_AREAS.reduce((result, area) => {
 }, {});
 
 const App = () => {
-	const [ orderStatuses, setOrderStatuses ] = useState(JSON.parse((localStorage.getItem('orderStatuses') || 'null')) || {});
-	const [ order, setOrder ] = useState(JSON.parse((localStorage.getItem('orders') || 'null')) || {});
+	const [orderStatuses, setOrderStatuses] = useState(JSON.parse((localStorage.getItem('orderStatuses') || 'null')) || {});
+	const [order, setOrder] = useState(JSON.parse((localStorage.getItem('orders') || 'null')) || {});
+	const [ordersParameters, setOrdersParameters] = useState({ faster: true, time: '', selfService: false });
 
 	return (
 		<Router>
@@ -139,7 +140,7 @@ const App = () => {
 						foodAreas={FOOD_AREAS}
 						order={order}
 						setActiveOrder={({ itemId }) => {
-							const nextStatuses = {...orderStatuses};
+							const nextStatuses = { ...orderStatuses };
 
 							nextStatuses[itemId] = 'ACTIVE';
 
@@ -152,26 +153,30 @@ const App = () => {
 					<Basket
 						foodAreas={FOOD_AREAS}
 						order={order}
+						ordersParameters={ordersParameters}
+						setFaster={(value) => { setOrdersParameters({ ...ordersParameters, faster: value, }) }}
+						setTime={(value) => { setOrdersParameters({ ...ordersParameters, time: value }) }}
+						setSelfService={(value) => { setOrdersParameters({ ...ordersParameters, selfService: value }) }}
 					/>
 				</Route>
 				<Route
 					path="/orders"
 					exact
 				>
-					<Orders 
+					<Orders
 						order={order}
 						orderStatuses={orderStatuses}
 						foodAreas={FOOD_AREAS}
 						setFinishedOrder={({ itemId }) => {
-							const nextStatuses = {...orderStatuses};
+							const nextStatuses = { ...orderStatuses };
 
-							nextStatuses[itemId] = 'DONE';
+							nextStatuses[itemId] = 'CANCELED';
 
 							setOrderStatuses(nextStatuses);
 							localStorage.setItem('orderStatuses', JSON.stringify(nextStatuses));
 						}}
 						setActiveOrder={({ itemId }) => {
-							const nextStatuses = {...orderStatuses};
+							const nextStatuses = { ...orderStatuses };
 
 							nextStatuses[itemId] = 'ACTIVE';
 
@@ -180,7 +185,7 @@ const App = () => {
 						}}
 					/>
 				</Route>
-				<Route 
+				<Route
 					path="/place/:area/:place"
 					render={routeProps => {
 						return (
@@ -190,7 +195,7 @@ const App = () => {
 								area={FOOD_AREAS[0]}
 								order={order}
 								onIncrementPosition={({ id, itemId, areaId }) => {
-									const updatedOrder = {...order};
+									const updatedOrder = { ...order };
 
 									if (id in updatedOrder) {
 										updatedOrder[id].count++;
@@ -201,7 +206,7 @@ const App = () => {
 										};
 									}
 
-									let nextOrderStatuses = {...orderStatuses};
+									let nextOrderStatuses = { ...orderStatuses };
 
 									if (Object.keys(nextOrderStatuses).length === 0) {
 										FOOD_AREAS.forEach(area => {
@@ -209,7 +214,6 @@ const App = () => {
 												item.foods.forEach(food => {
 													if (food.id in order) {
 														const status = item.id === itemId ? 'ACTIVE' : 'DONE';
-
 														nextOrderStatuses[item.id] = status;
 													}
 												});
@@ -218,7 +222,7 @@ const App = () => {
 									}
 
 									const serialized = JSON.stringify(updatedOrder);
-									
+
 									localStorage.setItem('orders', serialized);
 									localStorage.setItem('orderStatuses', JSON.stringify(nextOrderStatuses));
 
@@ -226,7 +230,7 @@ const App = () => {
 									setOrderStatuses(nextOrderStatuses);
 								}}
 								onDecrementPosition={({ id, itemId, areaId }) => {
-									const updatedOrder = {...order};
+									const updatedOrder = { ...order };
 
 									if (id in updatedOrder) {
 										if (updatedOrder[id].count === 1) {
@@ -236,7 +240,7 @@ const App = () => {
 										}
 									}
 
-									let nextOrderStatuses = {...orderStatuses};
+									let nextOrderStatuses = { ...orderStatuses };
 
 									if (Object.keys(nextOrderStatuses).length === 0) {
 										FOOD_AREAS.forEach(area => {
@@ -253,7 +257,7 @@ const App = () => {
 									}
 
 									const serialized = JSON.stringify(updatedOrder);
-									
+
 									localStorage.setItem('orders', serialized);
 									localStorage.setItem('orderStatuses', JSON.stringify(nextOrderStatuses));
 
